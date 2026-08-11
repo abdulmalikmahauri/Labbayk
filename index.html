@@ -1,0 +1,951 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Кураторы Labbayk Tour</title>
+    <meta
+      name="description"
+      content="Каталог кураторов Labbayk Tour для паломников: роли, опыт, языки и помощь на месте."
+    />
+    <link rel="icon" href="./favicon.svg" />
+    <style>
+      :root {
+        --background: #f4f1e9;
+        --foreground: #17211d;
+        --deep-green: #0b3b31;
+        --green: #145342;
+        --teal: #2e7f78;
+        --gold: #c89b45;
+        --ivory: #fffdf7;
+        --muted: #68736d;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        background: var(--background);
+        color: var(--foreground);
+        font-family: Inter, "Segoe UI", Arial, sans-serif;
+        margin: 0;
+      }
+
+      body.modal-open {
+        overflow: hidden;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      button {
+        font: inherit;
+      }
+
+      .topbar {
+        align-items: center;
+        background: rgba(255, 253, 247, 0.94);
+        border-bottom: 1px solid rgba(20, 83, 66, 0.12);
+        display: flex;
+        justify-content: space-between;
+        min-height: 72px;
+        padding: 12px 5vw;
+        position: sticky;
+        top: 0;
+        z-index: 20;
+      }
+
+      .brand {
+        align-items: center;
+        display: inline-flex;
+        gap: 12px;
+      }
+
+      .brand-mark {
+        align-items: center;
+        background: var(--deep-green);
+        border: 1px solid rgba(200, 155, 69, 0.5);
+        border-radius: 8px;
+        color: #fff8e8;
+        display: inline-flex;
+        font-size: 0.86rem;
+        font-weight: 800;
+        height: 40px;
+        justify-content: center;
+        width: 40px;
+      }
+
+      .brand strong,
+      .brand small {
+        display: block;
+      }
+
+      .brand strong {
+        font-size: 1rem;
+      }
+
+      .brand small {
+        color: var(--muted);
+        font-size: 0.78rem;
+        margin-top: 2px;
+      }
+
+      .nav-links {
+        align-items: center;
+        display: flex;
+        gap: 18px;
+        font-size: 0.92rem;
+      }
+
+      .nav-links a {
+        border-bottom: 1px solid transparent;
+        color: #30423b;
+        padding: 8px 0;
+      }
+
+      .nav-links a:hover,
+      .nav-links a:focus-visible {
+        border-color: var(--gold);
+        color: var(--deep-green);
+        outline: none;
+      }
+
+      .hero {
+        align-items: center;
+        background-image:
+          linear-gradient(
+            90deg,
+            rgba(8, 35, 29, 0.9),
+            rgba(8, 35, 29, 0.5) 46%,
+            rgba(8, 35, 29, 0.1)
+          ),
+          linear-gradient(180deg, rgba(8, 35, 29, 0.14), rgba(8, 35, 29, 0.28)),
+          url("./labbayk-hero.png");
+        background-position: center;
+        background-size: cover;
+        display: grid;
+        min-height: min(640px, calc(100svh - 104px));
+        padding: 56px 5vw;
+      }
+
+      .hero-content {
+        color: #fffdf7;
+        max-width: 760px;
+      }
+
+      .eyebrow {
+        color: var(--gold);
+        font-size: 0.78rem;
+        font-weight: 800;
+        letter-spacing: 0;
+        margin: 0 0 12px;
+        text-transform: uppercase;
+      }
+
+      .hero h1 {
+        font-size: 3.8rem;
+        line-height: 1.02;
+        margin: 0;
+      }
+
+      .hero-copy {
+        font-size: 1.14rem;
+        line-height: 1.8;
+        margin: 24px 0 0;
+        max-width: 680px;
+      }
+
+      .hero-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-top: 30px;
+      }
+
+      .primary-action,
+      .secondary-action,
+      .profile-button,
+      .close-button {
+        border-radius: 8px;
+        cursor: pointer;
+        transition:
+          background 180ms ease,
+          transform 180ms ease;
+      }
+
+      .primary-action,
+      .secondary-action {
+        border: 1px solid rgba(255, 253, 247, 0.45);
+        display: inline-flex;
+        font-weight: 800;
+        justify-content: center;
+        min-width: 164px;
+        padding: 13px 18px;
+      }
+
+      .primary-action {
+        background: #fff8e8;
+        color: var(--deep-green);
+      }
+
+      .secondary-action {
+        background: rgba(255, 253, 247, 0.12);
+        color: #fffdf7;
+      }
+
+      .primary-action:hover,
+      .secondary-action:hover,
+      .profile-button:hover,
+      .close-button:hover,
+      .primary-action:focus-visible,
+      .secondary-action:focus-visible,
+      .profile-button:focus-visible,
+      .close-button:focus-visible {
+        transform: translateY(-1px);
+        outline: none;
+      }
+
+      .source-note {
+        background: rgba(255, 253, 247, 0.12);
+        border: 1px solid rgba(255, 253, 247, 0.25);
+        border-radius: 8px;
+        color: rgba(255, 253, 247, 0.88);
+        line-height: 1.6;
+        margin: 28px 0 0;
+        max-width: 720px;
+        padding: 14px 16px;
+      }
+
+      .role-section,
+      .curators-section,
+      .replacement-note {
+        padding: 72px 5vw;
+      }
+
+      .section-heading {
+        margin: 0 auto 32px;
+        max-width: 880px;
+        text-align: center;
+      }
+
+      .section-heading h2,
+      .replacement-note h2 {
+        color: var(--deep-green);
+        font-size: 2.25rem;
+        line-height: 1.12;
+        margin: 0;
+      }
+
+      .section-heading p:not(.eyebrow),
+      .replacement-note p {
+        color: #46534d;
+        font-size: 1.02rem;
+        line-height: 1.8;
+        margin: 16px auto 0;
+        max-width: 760px;
+      }
+
+      .support-grid,
+      .curator-grid {
+        display: grid;
+        gap: 18px;
+        margin: 0 auto;
+      }
+
+      .support-grid {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        max-width: 1180px;
+      }
+
+      .curator-grid {
+        gap: 22px;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        max-width: 1280px;
+      }
+
+      .support-card,
+      .curator-card {
+        background: rgba(255, 253, 247, 0.88);
+        border: 1px solid rgba(20, 83, 66, 0.12);
+        border-radius: 8px;
+        box-shadow: 0 18px 45px rgba(23, 33, 29, 0.06);
+      }
+
+      .support-card {
+        min-height: 210px;
+        padding: 24px;
+      }
+
+      .support-index {
+        color: var(--gold);
+        display: block;
+        font-size: 0.9rem;
+        font-weight: 900;
+        margin-bottom: 24px;
+      }
+
+      .support-card h3,
+      .curator-card h3,
+      .profile-modal h2,
+      .profile-modal h3 {
+        color: var(--deep-green);
+        margin: 0;
+      }
+
+      .support-card h3 {
+        font-size: 1.15rem;
+        line-height: 1.28;
+      }
+
+      .support-card p {
+        color: var(--muted);
+        line-height: 1.65;
+        margin: 14px 0 0;
+      }
+
+      .curators-section {
+        background:
+          linear-gradient(180deg, rgba(20, 83, 66, 0.08), rgba(244, 241, 233, 0)),
+          var(--ivory);
+      }
+
+      .photo-placeholder,
+      .modal-photo {
+        align-items: center;
+        background:
+          linear-gradient(135deg, rgba(11, 59, 49, 0.96), rgba(46, 127, 120, 0.9)),
+          radial-gradient(circle at 70% 20%, rgba(200, 155, 69, 0.35), transparent 32%);
+        color: #fffdf7;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        justify-content: center;
+        text-align: center;
+      }
+
+      .photo-placeholder {
+        aspect-ratio: 4 / 3;
+        padding: 20px;
+      }
+
+      .photo-placeholder span,
+      .modal-photo span {
+        align-items: center;
+        border: 1px solid rgba(255, 253, 247, 0.4);
+        border-radius: 8px;
+        display: inline-flex;
+        font-size: 1.25rem;
+        font-weight: 900;
+        height: 56px;
+        justify-content: center;
+        width: 56px;
+      }
+
+      .photo-placeholder small,
+      .modal-photo small {
+        color: rgba(255, 253, 247, 0.82);
+        font-size: 0.82rem;
+      }
+
+      .curator-card {
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+      }
+
+      .card-body {
+        display: flex;
+        flex: 1;
+        flex-direction: column;
+        padding: 22px;
+      }
+
+      .status-pill {
+        align-self: flex-start;
+        background: rgba(200, 155, 69, 0.16);
+        border: 1px solid rgba(200, 155, 69, 0.28);
+        border-radius: 999px;
+        color: #7a5a19;
+        font-size: 0.75rem;
+        font-weight: 800;
+        margin-bottom: 14px;
+        padding: 6px 10px;
+      }
+
+      .role {
+        color: var(--teal);
+        font-weight: 800;
+        line-height: 1.45;
+        margin: 8px 0 18px;
+      }
+
+      .facts {
+        display: grid;
+        gap: 12px;
+        margin: 0 0 18px;
+      }
+
+      .facts div {
+        border-top: 1px solid rgba(20, 83, 66, 0.12);
+        padding-top: 10px;
+      }
+
+      .facts dt {
+        color: var(--muted);
+        font-size: 0.76rem;
+        font-weight: 900;
+        margin-bottom: 3px;
+        text-transform: uppercase;
+      }
+
+      .facts dd {
+        color: #24372f;
+        line-height: 1.5;
+        margin: 0;
+      }
+
+      .description {
+        color: #56625d;
+        line-height: 1.7;
+        margin: 0 0 22px;
+      }
+
+      .profile-button {
+        background: var(--deep-green);
+        border: 1px solid var(--deep-green);
+        color: #fffdf7;
+        font-weight: 800;
+        margin-top: auto;
+        padding: 12px 14px;
+        width: 100%;
+      }
+
+      .replacement-note {
+        align-items: center;
+        background: var(--deep-green);
+        color: #fffdf7;
+        display: grid;
+        gap: 26px;
+        grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+      }
+
+      .replacement-note h2 {
+        color: #fffdf7;
+      }
+
+      .replacement-note p {
+        color: rgba(255, 253, 247, 0.78);
+        margin: 0;
+      }
+
+      .footer {
+        align-items: center;
+        background: #10251f;
+        color: rgba(255, 253, 247, 0.78);
+        display: flex;
+        gap: 16px;
+        justify-content: space-between;
+        padding: 26px 5vw;
+      }
+
+      .footer span {
+        color: #fffdf7;
+        font-weight: 900;
+      }
+
+      .footer a {
+        color: #e5c77c;
+      }
+
+      .modal-backdrop {
+        align-items: center;
+        background: rgba(5, 18, 15, 0.72);
+        display: none;
+        inset: 0;
+        justify-content: center;
+        padding: 24px;
+        position: fixed;
+        z-index: 50;
+      }
+
+      .modal-backdrop.open {
+        display: flex;
+      }
+
+      .profile-modal {
+        background: var(--ivory);
+        border-radius: 8px;
+        box-shadow: 0 24px 70px rgba(11, 59, 49, 0.16);
+        max-height: min(760px, calc(100svh - 48px));
+        max-width: 980px;
+        overflow: auto;
+        padding: 28px;
+        position: relative;
+        width: 100%;
+      }
+
+      .close-button {
+        align-items: center;
+        background: #ffffff;
+        border: 1px solid rgba(20, 83, 66, 0.16);
+        color: var(--deep-green);
+        display: inline-flex;
+        font-size: 1.45rem;
+        height: 42px;
+        justify-content: center;
+        position: absolute;
+        right: 18px;
+        top: 18px;
+        width: 42px;
+      }
+
+      .modal-head {
+        align-items: center;
+        display: grid;
+        gap: 22px;
+        grid-template-columns: 160px minmax(0, 1fr);
+        padding-right: 48px;
+      }
+
+      .modal-photo {
+        aspect-ratio: 1;
+        border-radius: 8px;
+      }
+
+      .profile-modal h2 {
+        font-size: 2rem;
+        line-height: 1.15;
+      }
+
+      .modal-head p {
+        color: var(--teal);
+        font-size: 1.06rem;
+        font-weight: 800;
+        line-height: 1.45;
+        margin: 10px 0 0;
+      }
+
+      .modal-content {
+        display: grid;
+        gap: 28px;
+        grid-template-columns: minmax(0, 1fr) minmax(280px, 0.9fr);
+        margin-top: 30px;
+      }
+
+      .modal-summary,
+      .modal-services {
+        border-top: 1px solid rgba(20, 83, 66, 0.14);
+        padding-top: 22px;
+      }
+
+      .modal-summary p {
+        color: #52605a;
+        line-height: 1.75;
+        margin: 12px 0 22px;
+      }
+
+      .modal-services ul {
+        display: grid;
+        gap: 14px;
+        list-style: none;
+        margin: 16px 0 0;
+        padding: 0;
+      }
+
+      .modal-services li {
+        background: #ffffff;
+        border: 1px solid rgba(20, 83, 66, 0.12);
+        border-radius: 8px;
+        padding: 16px;
+      }
+
+      .modal-services strong,
+      .modal-services span {
+        display: block;
+      }
+
+      .modal-services span {
+        color: #5b6761;
+        line-height: 1.65;
+        margin-top: 8px;
+      }
+
+      @media (max-width: 1120px) {
+        .support-grid,
+        .curator-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+      }
+
+      @media (max-width: 760px) {
+        .topbar {
+          align-items: flex-start;
+          flex-direction: column;
+          gap: 10px;
+          min-height: 104px;
+          padding: 12px 20px;
+        }
+
+        .nav-links {
+          gap: 14px;
+          overflow-x: auto;
+          padding-bottom: 2px;
+          width: 100%;
+        }
+
+        .nav-links a {
+          flex: 0 0 auto;
+          font-size: 0.86rem;
+        }
+
+        .hero {
+          background-image:
+            linear-gradient(180deg, rgba(8, 35, 29, 0.78), rgba(8, 35, 29, 0.58)),
+            linear-gradient(90deg, rgba(8, 35, 29, 0.44), rgba(8, 35, 29, 0.12)),
+            url("./labbayk-hero.png");
+          min-height: calc(100svh - 136px);
+          padding: 40px 20px;
+        }
+
+        .hero h1 {
+          font-size: 2.45rem;
+        }
+
+        .hero-copy {
+          font-size: 1rem;
+          line-height: 1.7;
+        }
+
+        .primary-action,
+        .secondary-action {
+          width: 100%;
+        }
+
+        .role-section,
+        .curators-section,
+        .replacement-note {
+          padding: 54px 20px;
+        }
+
+        .section-heading {
+          text-align: left;
+        }
+
+        .section-heading h2,
+        .replacement-note h2 {
+          font-size: 1.85rem;
+        }
+
+        .support-grid,
+        .curator-grid,
+        .replacement-note,
+        .modal-content,
+        .modal-head {
+          grid-template-columns: 1fr;
+        }
+
+        .support-card {
+          min-height: auto;
+        }
+
+        .footer {
+          align-items: flex-start;
+          flex-direction: column;
+          padding: 24px 20px;
+        }
+
+        .modal-backdrop {
+          align-items: stretch;
+          padding: 0;
+        }
+
+        .profile-modal {
+          border-radius: 0;
+          max-height: 100svh;
+          padding: 24px 20px 32px;
+        }
+
+        .modal-head {
+          padding-right: 46px;
+        }
+
+        .modal-photo {
+          max-width: 160px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="topbar" aria-label="Навигация по сайту">
+      <a class="brand" href="#top" aria-label="Labbayk Tour">
+        <span class="brand-mark">LT</span>
+        <span>
+          <strong>Labbayk Tour</strong>
+          <small>каталог кураторов</small>
+        </span>
+      </a>
+      <nav class="nav-links" aria-label="Разделы сайта">
+        <a href="#role">Роль кураторов</a>
+        <a href="#curators">Каталог</a>
+        <a href="https://www.instagram.com/labbayktour/">Instagram</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero" id="top">
+        <div class="hero-content">
+          <p class="eyebrow">Для паломников Labbayk Tour</p>
+          <h1>Кураторы Labbayk Tour</h1>
+          <p class="hero-copy">
+            Куратор помогает паломнику чувствовать себя увереннее на месте:
+            объясняет порядок действий, помогает с размещением, бытовыми
+            вопросами, сопровождением и организационной консультацией.
+          </p>
+          <div class="hero-actions" aria-label="Основные действия">
+            <a class="primary-action" href="#curators">Смотреть каталог</a>
+            <a class="secondary-action" href="https://www.instagram.com/labbayktour/">@labbayktour</a>
+          </div>
+          <p class="source-note">
+            Данные кураторов ниже временные: публично подтвержденные ФИО, фото,
+            опыт и языки не найдены в доступном Instagram-предпросмотре.
+          </p>
+        </div>
+      </section>
+
+      <section class="role-section" id="role" aria-labelledby="role-title">
+        <div class="section-heading">
+          <p class="eyebrow">Зачем нужен куратор</p>
+          <h2 id="role-title">Один понятный контакт рядом с паломником</h2>
+          <p>
+            Каталог помогает заранее увидеть, к кому обратиться по конкретному
+            вопросу. У каждого куратора можно показать роль, опыт, языки и
+            зону ответственности на месте.
+          </p>
+        </div>
+        <div class="support-grid">
+          <article class="support-card">
+            <span class="support-index">01</span>
+            <h3>Размещение и отель</h3>
+            <p>Направление помощи, которое можно закрепить за конкретным куратором после подтверждения команды.</p>
+          </article>
+          <article class="support-card">
+            <span class="support-index">02</span>
+            <h3>Питание и бытовые вопросы</h3>
+            <p>Направление помощи, которое можно закрепить за конкретным куратором после подтверждения команды.</p>
+          </article>
+          <article class="support-card">
+            <span class="support-index">03</span>
+            <h3>Сопровождение во время паломничества</h3>
+            <p>Направление помощи, которое можно закрепить за конкретным куратором после подтверждения команды.</p>
+          </article>
+          <article class="support-card">
+            <span class="support-index">04</span>
+            <h3>Духовная и организационная консультация</h3>
+            <p>Направление помощи, которое можно закрепить за конкретным куратором после подтверждения команды.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="curators-section" id="curators" aria-labelledby="curators-title">
+        <div class="section-heading">
+          <p class="eyebrow">Временная структура каталога</p>
+          <h2 id="curators-title">Карточки кураторов</h2>
+          <p>
+            Эти профили показывают будущий формат карточек. Реальные данные
+            можно заменить без изменения структуры сайта.
+          </p>
+        </div>
+        <div class="curator-grid" id="curator-grid"></div>
+      </section>
+
+      <section class="replacement-note" aria-label="Замена данных">
+        <div>
+          <p class="eyebrow">Готово к наполнению</p>
+          <h2>Когда появятся реальные данные</h2>
+        </div>
+        <p>
+          В карточки нужно будет добавить фото, ФИО, роль, опыт, языки,
+          описание помощи и контакты дежурства. Сейчас сайт намеренно не
+          придумывает персональные данные кураторов.
+        </p>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <span>Labbayk Tour</span>
+      <a href="https://www.instagram.com/labbayktour/">instagram.com/labbayktour</a>
+    </footer>
+
+    <div class="modal-backdrop" id="profile-modal" role="presentation">
+      <section class="profile-modal" role="dialog" aria-modal="true" aria-labelledby="profile-title">
+        <button class="close-button" type="button" aria-label="Закрыть профиль" id="close-modal">×</button>
+        <div id="modal-inner"></div>
+      </section>
+    </div>
+
+    <script>
+      const curators = [
+        {
+          id: "hotel-support",
+          name: "ФИО куратора",
+          role: "Куратор по размещению и отелю",
+          focus: "Заселение, номера, связь с администрацией отеля",
+          experience: "Временное поле: опыт уточняется",
+          languages: "Временное поле: языки уточняются",
+          shortDescription:
+            "Помогает паломникам спокойно пройти заселение, решить бытовые вопросы в отеле и держит связь с группой на месте.",
+          profileSummary:
+            "Этот профиль подготовлен как структура для реального куратора. После подтверждения данных сюда можно добавить фото, полное имя, стаж сопровождения и языки общения.",
+          availability: "Контактные часы и номер будут добавлены после утверждения.",
+          services: [
+            ["Размещение и отель", "Помощь при заселении, распределении номеров, ориентации в отеле и связи с ответственными службами."],
+            ["Бытовые вопросы", "Подсказки по распорядку, месту встречи группы и аккуратная передача срочных просьб организаторам."]
+          ]
+        },
+        {
+          id: "meal-care",
+          name: "ФИО куратора",
+          role: "Куратор по питанию и бытовой поддержке",
+          focus: "Питание, ежедневный распорядок, бытовые запросы",
+          experience: "Временное поле: опыт уточняется",
+          languages: "Временное поле: языки уточняются",
+          shortDescription:
+            "Следит, чтобы паломники понимали график питания, знали, куда обращаться с бытовыми вопросами, и не оставались без поддержки.",
+          profileSummary:
+            "Здесь будет подробное описание реального сотрудника: с чем помогает, когда доступен и какие вопросы лучше передавать через него.",
+          availability: "График дежурств будет добавлен после подтверждения.",
+          services: [
+            ["Питание", "Ориентация по графику, месту питания и организационным изменениям во время поездки."],
+            ["Бытовая координация", "Помощь с повседневными вопросами, передачей запросов и спокойным разъяснением порядка действий."]
+          ]
+        },
+        {
+          id: "pilgrimage-route",
+          name: "ФИО куратора",
+          role: "Куратор сопровождения во время паломничества",
+          focus: "Сбор группы, маршруты, своевременное сопровождение",
+          experience: "Временное поле: опыт уточняется",
+          languages: "Временное поле: языки уточняются",
+          shortDescription:
+            "Помогает группе двигаться по маршруту организованно: напоминает о времени сбора, сопровождает переходы и уточняет текущие инструкции.",
+          profileSummary:
+            "Профиль предназначен для сотрудника, который сопровождает паломников на ключевых этапах программы и помогает сохранить ясность в движении группы.",
+          availability: "Точки связи на маршруте будут добавлены позже.",
+          services: [
+            ["Сопровождение", "Координация группы во время перемещений, встреч и этапов программы."],
+            ["Организация на месте", "Разъяснение времени сбора, точки встречи и последовательности действий."]
+          ]
+        },
+        {
+          id: "spiritual-organization",
+          name: "ФИО куратора",
+          role: "Куратор духовной и организационной консультации",
+          focus: "Спокойные разъяснения, вопросы программы, поддержка группы",
+          experience: "Временное поле: опыт уточняется",
+          languages: "Временное поле: языки уточняются",
+          shortDescription:
+            "Помогает паломникам разобраться в организационных вопросах и получить бережную консультацию в рамках программы поездки.",
+          profileSummary:
+            "После утверждения реального куратора в этом профиле можно указать его специализацию, опыт консультаций и формат общения с паломниками.",
+          availability: "Формат консультаций будет уточнен командой Labbayk Tour.",
+          services: [
+            ["Духовно-организационная консультация", "Бережные разъяснения по программе и передача вопросов ответственным специалистам, если требуется отдельное решение."],
+            ["Поддержка паломников", "Помощь в спокойной ориентации на месте, когда важно быстро понять, к кому и с чем обратиться."]
+          ]
+        }
+      ];
+
+      const grid = document.querySelector("#curator-grid");
+      const modal = document.querySelector("#profile-modal");
+      const modalInner = document.querySelector("#modal-inner");
+      const closeButton = document.querySelector("#close-modal");
+
+      function facts(curator) {
+        return `
+          <dl class="facts">
+            <div><dt>Специализация</dt><dd>${curator.focus}</dd></div>
+            <div><dt>Опыт</dt><dd>${curator.experience}</dd></div>
+            <div><dt>Языки</dt><dd>${curator.languages}</dd></div>
+          </dl>
+        `;
+      }
+
+      function openProfile(curator) {
+        modalInner.innerHTML = `
+          <div class="modal-head">
+            <div class="modal-photo"><span>LT</span><small>Фото куратора</small></div>
+            <div>
+              <span class="status-pill">Временный профиль</span>
+              <h2 id="profile-title">${curator.name}</h2>
+              <p>${curator.role}</p>
+            </div>
+          </div>
+          <div class="modal-content">
+            <div class="modal-summary">
+              <h3>Кратко о кураторе</h3>
+              <p>${curator.profileSummary}</p>
+              ${facts(curator)}
+              <dl class="facts"><div><dt>Доступность</dt><dd>${curator.availability}</dd></div></dl>
+            </div>
+            <div class="modal-services">
+              <h3>С чем помогает на месте</h3>
+              <ul>
+                ${curator.services
+                  .map(([title, description]) => `<li><strong>${title}</strong><span>${description}</span></li>`)
+                  .join("")}
+              </ul>
+            </div>
+          </div>
+        `;
+        modal.classList.add("open");
+        document.body.classList.add("modal-open");
+      }
+
+      function closeProfile() {
+        modal.classList.remove("open");
+        document.body.classList.remove("modal-open");
+      }
+
+      grid.innerHTML = curators
+        .map(
+          (curator, index) => `
+            <article class="curator-card">
+              <div class="photo-placeholder"><span>LT</span><small>Фото будет добавлено</small></div>
+              <div class="card-body">
+                <span class="status-pill">Временные данные</span>
+                <h3>${curator.name}</h3>
+                <p class="role">${curator.role}</p>
+                ${facts(curator)}
+                <p class="description">${curator.shortDescription}</p>
+                <button class="profile-button" type="button" data-curator-index="${index}">Открыть профиль</button>
+              </div>
+            </article>
+          `
+        )
+        .join("");
+
+      document.querySelectorAll("[data-curator-index]").forEach((button) => {
+        button.addEventListener("click", () => openProfile(curators[Number(button.dataset.curatorIndex)]));
+      });
+
+      closeButton.addEventListener("click", closeProfile);
+      modal.addEventListener("mousedown", (event) => {
+        if (event.target === modal) {
+          closeProfile();
+        }
+      });
+      window.addEventListener("keydown", (event) => {
+        if (event.key === "Escape") {
+          closeProfile();
+        }
+      });
+    </script>
+  </body>
+</html>
