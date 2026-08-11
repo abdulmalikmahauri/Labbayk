@@ -4,7 +4,7 @@
 
 ## Просмотр макета
 
-Живая версия без `chatgpt` в адресе: https://raw.githack.com/abdulmalikmahauri/Labbayk/gh-pages/index.html
+Живая версия на GitHub Pages: https://abdulmalikmahauri.github.io/Labbayk/
 
 Репозиторий: https://github.com/abdulmalikmahauri/Labbayk
 
