@@ -4,7 +4,9 @@
 
 ## Просмотр макета
 
-Живая версия: https://labbayk-tour-curators.abdulmalikmahauri.chatgpt.site
+Живая версия без `chatgpt` в адресе: https://raw.githack.com/abdulmalikmahauri/Labbayk/gh-pages/index.html
+
+Репозиторий: https://github.com/abdulmalikmahauri/Labbayk
 
 ## Что внутри
 
